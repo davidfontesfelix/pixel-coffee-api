@@ -1,0 +1,25 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API PixelCoffee",
+    "description": "Api feita para o projeto PixelCoffee",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001/",
+      "description": "URL de desenvolvimento"
+    }
+  ], 
+  "tags": [
+    {"name": "menu"}
+  ],
+  "paths": {
+    "/menu/coffees": {
+      "get": {
+        "summary": "entrega o catalogo de cafés",
+        "tags": ["menu"]
+      }
+    }
+  }
+}
