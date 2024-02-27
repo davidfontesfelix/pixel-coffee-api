@@ -9,3 +9,21 @@ describe('GET /menu/coffees', () => {
     expect(Array.isArray(response.body)).toBe(true)
   })
 })
+
+describe('POST /menu/takeout-order', () => {
+  it('should return the error: "Erro de validação dos dados"', async () => {
+    const response = await request(app).post('/menu/takeout-order')
+
+    expect(response.status).toBe(400)
+    expect(response.body).toEqual({ error: 'Erro de validação dos dados' })
+  })
+})
+
+describe('POST /menu/table-order', () => {
+  it('should return the error: "Erro de validação dos dados"', async () => {
+    const response = await request(app).post('/menu/table-order')
+
+    expect(response.status).toBe(400)
+    expect(response.body).toEqual({ error: 'Erro de validação dos dados' })
+  })
+})

@@ -3,7 +3,7 @@
   "info": {
     "title": "API PixelCoffee",
     "description": "Api feita para o projeto PixelCoffee",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "servers": [
     {
@@ -19,6 +19,75 @@
       "get": {
         "summary": "entrega o catalogo de cafés",
         "tags": ["menu"]
+      }
+    },
+    "/menu/takeout-order" : {
+      "post": {
+        "summary": "Criar pedido para viajem",
+        "tags": ["menu"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                  "items": {
+                    "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "integer"
+                        },
+                        "id": {
+                          "type": "integer"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                    "required": ["name", "quantity", "id", "price"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/menu/table-order" : {
+      "post": {
+        "summary": "Criar pedido para viajem",
+        "tags": ["menu"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "table": {
+                  "type": "string"
+                },
+                "type": "array",
+                  "items": {
+                    "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "quantity": {
+                          "type": "integer"
+                        },
+                        "id": {
+                          "type": "integer"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                    "required": ["name", "quantity", "id", "price"]
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
