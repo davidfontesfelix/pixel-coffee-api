@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllCoffees, postTableOrder, postTakeoutOrder } from '../controllers/menu-controllers'
+import { getAllCoffees, getTicket, postTableOrder, postTakeoutOrder } from '../controllers/menu-controllers'
 import { ZodError, z } from 'zod'
 
 const routes = express.Router()
@@ -17,9 +17,23 @@ const orderSchema = z.object({
 })
 
 routes.get('/menu/coffees', async (req, res) => {
-  const response = await getAllCoffees()
+  try {
+    const response = await getAllCoffees()
+  
+    res.status(200).json(response)
+  } catch {
+    res.status(500).json({error: 'O servidor não conseguiu mandar os dados'})
+  }
+})
 
-  res.status(200).json(response)
+routes.get('/menu/takeout/ticket', async (req, res) => {
+  try {
+    const response = await getTicket()
+  
+    res.status(200).json({ ticketNumber: response })
+  } catch {
+    res.status(500).json({error: 'O servidor não conseguiu mandar os dados'})
+  }
 })
 
 routes.post('/menu/takeout-order', async (req, res) => {
@@ -61,7 +75,8 @@ routes.post('/menu/table-order', async (req, res) => {
       res.status(503).json({ error: 'O servidor não conseguiu receber os dados' })
     }
   }
-
 })
+
+
 
 export {routes}

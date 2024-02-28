@@ -3,7 +3,7 @@
   "info": {
     "title": "API PixelCoffee",
     "description": "Api feita para o projeto PixelCoffee",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "servers": [
     {
@@ -18,6 +18,12 @@
     "/menu/coffees": {
       "get": {
         "summary": "entrega o catalogo de cafés",
+        "tags": ["menu"]
+      }
+    },
+    "/menu/takeout/ticket": {
+      "get": {
+        "summary": "entrega o ticket do pedido para viagem",
         "tags": ["menu"]
       }
     },

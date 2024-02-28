@@ -13,12 +13,13 @@ const getAllCoffees = async () => {
   const list = data.docs.map((doc) => ({...doc.data()}))
   return list
 }
+const getTicket = async () => {
+  const data = await getDocs(takeoutOrderCollection)
+  return data.size
+}
 
 const postTakeoutOrder = async (order: orderParams) => {
   await addDoc(takeoutOrderCollection, order)
-
-  const data = await getDocs(takeoutOrderCollection)
-  return data.size
 }
 
 const postTableOrder = async (order: orderParams) => {
@@ -26,4 +27,4 @@ const postTableOrder = async (order: orderParams) => {
 } 
 
  
-export {getAllCoffees, postTakeoutOrder, postTableOrder}
+export {getAllCoffees, getTicket, postTakeoutOrder, postTableOrder}
