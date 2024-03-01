@@ -4,6 +4,7 @@ import cors from 'cors'
 import swaggerUi, { serve } from 'swagger-ui-express'
 import swaggerFile from './swagger.json'
 import '../config/dotenv.config'
+import { salesControlRoutes } from './routes/sales-control-routes'
 
 const app = express()
 
@@ -11,6 +12,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use(routes)
+app.use(salesControlRoutes)
 
 let port: string | number
 

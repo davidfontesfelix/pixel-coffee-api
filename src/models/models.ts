@@ -8,6 +8,7 @@ const itemArray = z.object({
 })
 
 const orderSchema = z.object({
+  id: z.string(),
   order: z.array(itemArray),
   table: z.string().optional()
 })

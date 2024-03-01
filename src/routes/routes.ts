@@ -1,6 +1,7 @@
 import express from 'express'
 import { getAllCoffees, getTicket, postTableOrder, postTakeoutOrder } from '../controllers/menu-controllers'
 import { ZodError, z } from 'zod'
+import {v4 as uuidv4} from 'uuid'
 
 const routes = express.Router()
 
@@ -41,12 +42,13 @@ routes.post('/menu/takeout-order', async (req, res) => {
     const { order } = orderSchema.parse(req.body)
 
     const data = {
-      order
+      order,
+      id: uuidv4()
     }
 
-    const response = await postTakeoutOrder(data)
+    await postTakeoutOrder(data)
 
-    res.status(201).json({ message: 'O numero do seu pedido é:', number: response })
+    res.status(201).json({ message: 'Pedido feito'})
 
   } catch (error) {
     if (error instanceof ZodError) {
@@ -59,10 +61,12 @@ routes.post('/menu/takeout-order', async (req, res) => {
 
 routes.post('/menu/table-order', async (req, res) => {
   try {
-    const { order } = orderSchema.parse(req.body)
+    const { order, table } = orderSchema.parse(req.body)
 
     const data = {
-      order
+      order,
+      table,
+      id: uuidv4()
     }
   
     await postTableOrder(data)
