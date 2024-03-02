@@ -10,14 +10,6 @@ describe('GET /menu/coffees', () => {
   })
 })
 
-describe('GET /menu/takeout/ticket', () => {
-  it('should retorna a propriety "ticketNumber"', async () => {
-    const response = await request(app).get('/menu/takeout/ticket')
-
-    expect(response.status).toBe(200)
-  })
-})
-
 describe('POST /menu/takeout-order', () => {
   it('should return the error: "Erro de validação dos dados"', async () => {
     const response = await request(app).post('/menu/takeout-order')

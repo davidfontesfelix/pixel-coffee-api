@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllCoffees, getTicket, postTableOrder, postTakeoutOrder } from '../controllers/menu-controllers'
+import { generateCode, getAllCoffees, postTableOrder, postTakeoutOrder } from '../controllers/menu-controllers'
 import { ZodError, z } from 'zod'
 import {v4 as uuidv4} from 'uuid'
 
@@ -27,23 +27,16 @@ routes.get('/menu/coffees', async (req, res) => {
   }
 })
 
-routes.get('/menu/takeout/ticket', async (req, res) => {
-  try {
-    const response = await getTicket()
-  
-    res.status(200).json({ ticketNumber: response })
-  } catch {
-    res.status(500).json({error: 'O servidor não conseguiu mandar os dados'})
-  }
-})
 
 routes.post('/menu/takeout-order', async (req, res) => {
   try {
     const { order } = orderSchema.parse(req.body)
 
+    const code = generateCode()
+
     const data = {
       order,
-      id: uuidv4()
+      id: code
     }
 
     await postTakeoutOrder(data)

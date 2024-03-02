@@ -3,7 +3,7 @@
   "info": {
     "title": "API PixelCoffee",
     "description": "Api feita para o projeto PixelCoffee",
-    "version": "1.3.0"
+    "version": "1.3.1"
   },
   "servers": [
     {

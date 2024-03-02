@@ -13,9 +13,13 @@ const getAllCoffees = async () => {
   const list = data.docs.map((doc) => ({...doc.data()}))
   return list
 }
-const getTicket = async () => {
-  const data = await getDocs(takeoutOrderCollection)
-  return data.size
+const generateCode = () => {
+  const characters =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let code = ''
+  for (let i = 0; i < 4; i++){
+    code += characters.charAt(Math.floor(Math.random() * characters.length))
+  }
+  return code
 }
 
 const postTakeoutOrder = async (order: orderParams) => {
@@ -27,4 +31,4 @@ const postTableOrder = async (order: orderParams) => {
 } 
 
  
-export {getAllCoffees, getTicket, postTakeoutOrder, postTableOrder}
+export {getAllCoffees, generateCode, postTakeoutOrder, postTableOrder}
