@@ -41,7 +41,7 @@ routes.post('/menu/takeout-order', async (req, res) => {
 
     await postTakeoutOrder(data)
 
-    res.status(201).json({ message: 'Pedido feito'})
+    res.status(201).json({ message: 'Pedido feito', code:code })
 
   } catch (error) {
     if (error instanceof ZodError) {
